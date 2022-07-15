@@ -1,18 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lucaspiresnabais/bluebat-json-schema/master/test.json",
-  "title": "Product",
-  "description": "A product from Acme's catalog",
-  "type": "object",
-  "properties": {
-    "productId": {
-      "description": "The unique identifier for a product",
-      "type": "integer"
-    },
-    "productName": {
-      "description": "Name of the product",
-      "type": "string"
-    }
-  },
-  "required": ["productId", "productName"]
+  "description": "The unique identifier for a product",
+  "type": "integer"
 }
