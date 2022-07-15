@@ -1,0 +1,1 @@
+# bluebat-json-schema
