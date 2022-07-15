@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/lucaspiresnabais/bluebat-json-schema/master/getFbAppId.json",
+  "title": "getFbAppId",
+  "description": "Get Facebook App Id Response",
+  "type": "object",
+  "properties": {
+    "0": {
+      "description": "The unique identifier this FB App",
+      "type": "string"
+    }
+  }
+}
