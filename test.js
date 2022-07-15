@@ -9,6 +9,7 @@ run = async () => {
   const v = new Validator();
 
   v.addSchema(initialSchema);
+
   importNextSchema = async () => {
     var nextSchema = v.unresolvedRefs.shift();
     if (!nextSchema) {
@@ -22,9 +23,12 @@ run = async () => {
 
   await importNextSchema();
 
-  const instance = { productId: 3 };
+  const instance = { productId: 3, productName: "Hola" };
 
-  console.log(v.validate(instance, initialSchema));
+  const result = v.validate(instance, initialSchema);
+
+  console.log(result);
+  console.log(result.valid);
 };
 
 run();
