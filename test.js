@@ -1,24 +1,30 @@
 const Validator = require("jsonschema").Validator;
+const axios = require("axios");
 
-const v = new Validator();
-
-const instance = "4";
-const schema = {
-  $schema: "https://json-schema.org/draft/2020-12/schema",
-  $id: "",
-  title: "Product",
-  description: "A product from Acme's catalog",
-  type: "object",
-  properties: {
-    productId: {
-      $ref: "https://raw.githubusercontent.com/lucaspiresnabais/bluebat-json-schema/master/test.json",
-    },
-    productName: {
-      description: "Name of the product",
-      type: "string",
-    },
-  },
-  required: ["productId", "productName"],
+const initialSchema = {
+  $ref: "https://raw.githubusercontent.com/lucaspiresnabais/bluebat-json-schema/master/test.json",
 };
 
-console.log(v.validate(instance, schema));
+run = async () => {
+  const v = new Validator();
+
+  v.addSchema(initialSchema);
+  importNextSchema = async () => {
+    var nextSchema = v.unresolvedRefs.shift();
+    if (!nextSchema) {
+      return;
+    }
+    const res = await axios.get(nextSchema);
+    const schema = res.data;
+    v.addSchema(schema);
+    importNextSchema();
+  };
+
+  await importNextSchema();
+
+  const instance = { productId: 3 };
+
+  console.log(v.validate(instance, initialSchema));
+};
+
+run();
